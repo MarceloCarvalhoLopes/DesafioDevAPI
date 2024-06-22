@@ -14,9 +14,17 @@ namespace DesafioDevAPI.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<ServiceResponse<List<Cliente>>>> GetClientes()
+        public async Task<ActionResult<ServiceResponse<List<Cliente>>>> Get()
         {
-            return Ok( await _clienteInterface.GetClientes());
+            return Ok( await _clienteInterface.Get());
         }
+
+        [HttpPost]
+        public async Task<ActionResult<ServiceResponse<List<Cliente>>>> Create(Cliente cliente)
+        {
+            return Ok(await _clienteInterface.Create(cliente));
+        }
+
+
     }
 }
