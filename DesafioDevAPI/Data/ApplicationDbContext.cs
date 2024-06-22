@@ -8,7 +8,7 @@ namespace DesafioDevAPI.Data
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) :base(options) {}
  
         
-        public DbSet<Cliente> Cliente { get; set; }
+        public DbSet<ClienteModel> Cliente { get; set; }
         public DbSet<Usuario> Usuario { get; set; }
 
     }

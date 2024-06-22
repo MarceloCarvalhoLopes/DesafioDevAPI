@@ -4,12 +4,12 @@ namespace DesafioDevAPI.Services.ClienteService
 {
     public interface IClienteInterface
     {
-        Task<ServiceResponse<List<Cliente>>> Get();
-        Task<ServiceResponse<List<Cliente>>> Create(Cliente cliente);
-        Task<ServiceResponse<Cliente>> GetById(int id);
-        Task<ServiceResponse<List<Cliente>>> GetByUF(string uf);
-        Task<ServiceResponse<List<Cliente>>> Update(Cliente cliente);
-        Task<ServiceResponse<List<Cliente>>> Delete(int id);
+        Task<ServiceResponse<List<ClienteModel>>> Get();
+        Task<ServiceResponse<List<ClienteModel>>> Create(ClienteModel clienteModel);
+        Task<ServiceResponse<ClienteModel>> GetById(int id);
+        Task<ServiceResponse<List<ClienteModel>>> GetByUF(string uf);
+        Task<ServiceResponse<List<ClienteModel>>> Update(ClienteModel clienteModel);
+        Task<ServiceResponse<List<ClienteModel>>> Delete(int id);
 
 
     }
