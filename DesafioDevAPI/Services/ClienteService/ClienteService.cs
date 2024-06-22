@@ -42,9 +42,26 @@ namespace DesafioDevAPI.Services.ClienteService
             throw new NotImplementedException();
         }
 
-        public Task<ServiceResponse<Cliente>> GetById(int id)
+        public async Task<ServiceResponse<Cliente>> GetById(int id)
         {
-            throw new NotImplementedException();
+            ServiceResponse<Cliente> serviceResponse = new ServiceResponse<Cliente>();
+            try
+            {
+                Cliente cliente = _context.Cliente.FirstOrDefault(x => x.Id == id);
+                
+                if (cliente == null) {
+                    serviceResponse.Dados = null;
+                    serviceResponse.Mensagem = "´Cliente não localizado";
+                    serviceResponse.Successo = false;
+                }
+                
+                serviceResponse.Dados = cliente;
+            }
+            catch (Exception ex) {
+                serviceResponse.Mensagem = ex.Message;
+                serviceResponse.Successo = false;
+            }
+            return serviceResponse;
         }
 
         public async Task<ServiceResponse<List<Cliente>>> Get()

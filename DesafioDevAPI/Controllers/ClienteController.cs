@@ -25,6 +25,13 @@ namespace DesafioDevAPI.Controllers
             return Ok(await _clienteInterface.Create(cliente));
         }
 
+        [HttpGet("{id}")]
+        public async Task<ActionResult<ServiceResponse<Cliente>>> GetById(int id)
+        {
+            ServiceResponse<Cliente> serviceResponse = await _clienteInterface.GetById(id);
+            return Ok(serviceResponse);
+        }
+
 
     }
 }
