@@ -37,9 +37,33 @@ namespace DesafioDevAPI.Services.ClienteService
             return serviceResponse;
         }
 
-        public Task<ServiceResponse<List<Cliente>>> Delete(int id)
+        public async Task<ServiceResponse<List<Cliente>>> Delete(int id)
         {
-            throw new NotImplementedException();
+            ServiceResponse<List<Cliente>> serviceResponse = new ServiceResponse<List<Cliente>>();
+            try
+            {
+                Cliente cliente = _context.Cliente.FirstOrDefault(x => x.Id == id);
+
+                if (cliente == null)
+                {
+                    serviceResponse.Dados = null;
+                    serviceResponse.Mensagem = "Cliente não encontrado!";
+                    serviceResponse.Successo = false;
+
+                    return serviceResponse;
+                }
+
+                _context.Cliente.Remove(cliente);
+                await _context.SaveChangesAsync();
+
+                serviceResponse.Dados = _context.Cliente.ToList();
+            }
+            catch (Exception ex) {
+                serviceResponse.Mensagem = ex.Message;
+                serviceResponse.Successo = false;
+            }
+            return serviceResponse;
+
         }
 
         public async Task<ServiceResponse<List<Cliente>>> Get()

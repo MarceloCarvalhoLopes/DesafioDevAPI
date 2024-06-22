@@ -47,6 +47,14 @@ namespace DesafioDevAPI.Controllers
             return Ok(serviceResponse);            
         }
 
+        [HttpDelete]
+        public async Task<ActionResult<ServiceResponse<List<Cliente>>>> Delete(int id)
+        {
+            ServiceResponse<List<Cliente>> serviceResponse = await _clienteInterface.Delete(id);
+            return Ok(serviceResponse);
+
+        }
+
 
 
     }
