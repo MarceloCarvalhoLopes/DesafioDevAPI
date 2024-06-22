@@ -1,6 +1,8 @@
 ﻿using DesafioDevAPI.Models;
 using DesafioDevAPI.Services.ClienteService;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace DesafioDevAPI.Controllers
 {
@@ -37,6 +39,14 @@ namespace DesafioDevAPI.Controllers
             ServiceResponse<List<Cliente>> serviceResponse = await _clienteInterface.GetByUF(uf);
             return Ok(serviceResponse);
         }
+
+        [HttpPut]
+        public async Task<ActionResult<List<Cliente>>> Update(Cliente cliente)
+        {
+            ServiceResponse<List<Cliente>> serviceResponse = await _clienteInterface.Update(cliente);
+            return Ok(serviceResponse);            
+        }
+
 
 
     }

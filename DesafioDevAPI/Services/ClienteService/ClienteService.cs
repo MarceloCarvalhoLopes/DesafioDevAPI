@@ -1,6 +1,6 @@
 ﻿using DesafioDevAPI.Data;
 using DesafioDevAPI.Models;
-using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
 
 namespace DesafioDevAPI.Services.ClienteService
 {
@@ -102,9 +102,32 @@ namespace DesafioDevAPI.Services.ClienteService
 
         }
 
-        public Task<ServiceResponse<List<Cliente>>> Update(Cliente cliente)
+        public async Task<ServiceResponse<List<Cliente>>> Update(Cliente cliente)
         {
-            throw new NotImplementedException();
+            ServiceResponse<List<Cliente>> serviceResponse = new ServiceResponse<List<Cliente>>();
+
+            try
+            {
+                Cliente cliente1 = _context.Cliente.AsNoTracking().FirstOrDefault(x => x.Id == x.Id);
+
+                if (cliente1 == null)
+                {
+                    serviceResponse.Dados = null;
+                    serviceResponse.Mensagem = "Cliente não localiado!";
+                    serviceResponse.Successo = false;
+                }
+                _context.Cliente.Update(cliente);
+                await _context.SaveChangesAsync();
+
+                serviceResponse.Dados = _context.Cliente.ToList();
+            }
+            catch (Exception ex) {
+
+                serviceResponse.Mensagem = ex.Message;
+                serviceResponse.Successo = false;
+            }
+
+            return serviceResponse;
         }
 
     
