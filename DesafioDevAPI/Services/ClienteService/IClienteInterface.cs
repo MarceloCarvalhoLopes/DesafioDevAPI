@@ -7,6 +7,7 @@ namespace DesafioDevAPI.Services.ClienteService
         Task<ServiceResponse<List<Cliente>>> Get();
         Task<ServiceResponse<List<Cliente>>> Create(Cliente cliente);
         Task<ServiceResponse<Cliente>> GetById(int id);
+        Task<ServiceResponse<List<Cliente>>> GetByUF(string uf);
         Task<ServiceResponse<List<Cliente>>> Update(Cliente cliente);
         Task<ServiceResponse<List<Cliente>>> Delete(int id);
 

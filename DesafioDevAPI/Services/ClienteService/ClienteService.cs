@@ -42,6 +42,24 @@ namespace DesafioDevAPI.Services.ClienteService
             throw new NotImplementedException();
         }
 
+        public async Task<ServiceResponse<List<Cliente>>> Get()
+        {
+            ServiceResponse<List<Cliente>> serviceResponse = new ServiceResponse<List<Cliente>>();
+            try
+            {
+                serviceResponse.Dados = _context.Cliente.ToList();
+                if (serviceResponse.Dados.Count == 0)
+                {
+                    serviceResponse.Mensagem = "Nenhum dado encontrado!";
+                }
+            }
+            catch (Exception ex)
+            {
+                serviceResponse.Mensagem = ex.Message;
+                serviceResponse.Successo = false;
+            }
+            return serviceResponse;
+        }
         public async Task<ServiceResponse<Cliente>> GetById(int id)
         {
             ServiceResponse<Cliente> serviceResponse = new ServiceResponse<Cliente>();
@@ -64,9 +82,9 @@ namespace DesafioDevAPI.Services.ClienteService
             return serviceResponse;
         }
 
-        public async Task<ServiceResponse<List<Cliente>>> Get()
+        public async Task<ServiceResponse<List<Cliente>>> GetByUF(string uf)
         {
-            ServiceResponse < List < Cliente >> serviceResponse = new ServiceResponse<List<Cliente>> ();
+            ServiceResponse<List<Cliente>> serviceResponse = new ServiceResponse<List<Cliente>>();
             try
             {
                 serviceResponse.Dados = _context.Cliente.ToList();
@@ -75,17 +93,20 @@ namespace DesafioDevAPI.Services.ClienteService
                     serviceResponse.Mensagem = "Nenhum dado encontrado!";
                 }
             }
-            catch (Exception ex) 
-            { 
+            catch (Exception ex)
+            {
                 serviceResponse.Mensagem = ex.Message;
                 serviceResponse.Successo = false;
             }
             return serviceResponse;
+
         }
 
         public Task<ServiceResponse<List<Cliente>>> Update(Cliente cliente)
         {
             throw new NotImplementedException();
         }
+
+    
     }
 }

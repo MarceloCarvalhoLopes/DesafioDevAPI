@@ -16,7 +16,7 @@ namespace DesafioDevAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<ServiceResponse<List<Cliente>>>> Get()
         {
-            return Ok( await _clienteInterface.Get());
+            return Ok(await _clienteInterface.Get());
         }
 
         [HttpPost]
@@ -29,6 +29,12 @@ namespace DesafioDevAPI.Controllers
         public async Task<ActionResult<ServiceResponse<Cliente>>> GetById(int id)
         {
             ServiceResponse<Cliente> serviceResponse = await _clienteInterface.GetById(id);
+            return Ok(serviceResponse);
+        }
+        [HttpGet("clientes/{uf}")]
+        public async Task<ActionResult<List<Cliente>>> getByUF(string uf)
+        {
+            ServiceResponse<List<Cliente>> serviceResponse = await _clienteInterface.GetByUF(uf);
             return Ok(serviceResponse);
         }
 
