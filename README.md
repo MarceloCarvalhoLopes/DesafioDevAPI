@@ -13,6 +13,7 @@ Desenvolvido uma API em C# para testar os conhecimentos solicitados para vaga.
 * EntityFrameworkCore.SqlServer
 * EntityFrameworkCore.Tools
 * IdentityModel.Tokens.Jwt
+* SQL Server
 
 ## End-points.
   <p>
