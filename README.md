@@ -35,19 +35,30 @@ Após criação do banco pode ser executado a API que irá carregar no navegador
 padrão https://localhost:7202/swagger/index.html
 
   <p>
-    <img src="DesafioDevAPI/assets/to_readme/PackageManageConsole.png">    
+    <img src="DesafioDevAPI/assets/to_readme/Api.png">    
   </p>
 
 
 Para utilizar os end-points primeiro é necessário logar na API através do 
 end-point Conta informando login e password
 
-```
-{
-  "login": "admin",
-  "password": "admin"
-}
-```
+  <p>
+    <img src="DesafioDevAPI/assets/to_readme/ContaEndPoint.png">    
+  </p>
 
 No Response body da requisição irá gerar o token que deve ser copiado para logar
 na API e liberar os demais end-points.
+
+  <p>
+    <img src="DesafioDevAPI/assets/to_readme/ResponseBody.png">    
+  </p>
+
+Logando na API, siga os passos conforme ordem da imagem abaixo:
+
+  <p>
+    <img src="DesafioDevAPI/assets/to_readme/Authorize.png">    
+  </p>
+
+
+
+
