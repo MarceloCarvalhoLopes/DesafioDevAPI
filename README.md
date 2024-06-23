@@ -23,6 +23,10 @@ Desenvolvido uma API em C# para testar os conhecimentos solicitados a vaga.
 * Get / Cliente by Id
 * Get / Cliente by UF
 
+  <p align="left">
+    <img src="assets/to_readme/allendpoints.png">
+  </p>
+
 ### Conta
 
 * Post / Conta
