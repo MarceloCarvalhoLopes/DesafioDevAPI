@@ -1,4 +1,5 @@
-﻿using DesafioDevAPI.Models;
+﻿using DesafioDevAPI.Dto;
+using DesafioDevAPI.Models;
 using DesafioDevAPI.Services.ClienteService;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http.HttpResults;
@@ -24,9 +25,10 @@ namespace DesafioDevAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<ServiceResponse<List<ClienteModel>>>> Create(ClienteModel cliente)
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        public async Task<ActionResult<ServiceResponse<List<ClienteModel>>>> Create(ClienteDto clienteDto)
         {
-            return Ok(await _clienteInterface.Create(cliente));
+            return Ok(await _clienteInterface.Create(clienteDto));
         }
 
         [HttpGet("{id}")]

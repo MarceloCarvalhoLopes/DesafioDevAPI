@@ -1,4 +1,5 @@
 ﻿using DesafioDevAPI.Data;
+using DesafioDevAPI.Dto;
 using DesafioDevAPI.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,32 +12,37 @@ namespace DesafioDevAPI.Services.ClienteService
         {
             _context = context;    
         }
-        public async Task<ServiceResponse<List<ClienteModel>>> Create(ClienteModel clienteModel)
+
+        public async Task<ServiceResponse<List<ClienteModel>>> Create(ClienteDto clienteDto)
         {
             ServiceResponse<List<ClienteModel>> serviceResponse = new ServiceResponse<List<ClienteModel>>();
             try
             {
-                if (clienteModel == null) {
-                    serviceResponse.Dados = null;
-                    serviceResponse.Mensagem = "Informe os dados para o cadastro!";
-                    serviceResponse.Successo = false;
-                    
-                    return serviceResponse;
-                }
+                var cliente = new ClienteModel()
+                {
+                    Nome = clienteDto.Nome,
+                    Cpf = clienteDto.Cpf,
+                    DataNascimento = clienteDto.DataNascimento,
+                    Uf = clienteDto.Uf
+                };
 
-                _context.Add(clienteModel);
+                _context.Add(cliente);
                 await _context.SaveChangesAsync();
-                serviceResponse.Dados = _context.Cliente.ToList();
+                serviceResponse.Dados = await _context.Cliente.ToListAsync();
+                serviceResponse.Mensagem = "Cliente criado com sucesso!";
+
+                return serviceResponse;
 
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 serviceResponse.Mensagem = ex.Message;
                 serviceResponse.Successo = false;
+                return serviceResponse;
             }
 
-            return serviceResponse;
         }
-      
+
         public async Task<ServiceResponse<List<ClienteModel>>> Delete(int id)
         {
             ServiceResponse<List<ClienteModel>> serviceResponse = new ServiceResponse<List<ClienteModel>>();
