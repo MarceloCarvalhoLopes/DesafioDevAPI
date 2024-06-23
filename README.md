@@ -25,13 +25,27 @@ Desenvolvido uma API em C# para testar os conhecimentos solicitados para vaga.
 Abra a API em sua IDE de preferência, deve ter instalado o banco Sql Server em
 sua máquina. Executar os comandos abaixo na sequência pelo Package Manager Console para gerar
 o Banco de Dados e as tabelas.
+Não esqueça de alterar o Data Source no arquivo appsettings.json caso contrario não irá gera o 
+banco.
 
-* add-migration first-migration
-* update-database
-  
+  <p>
+    <img src="DesafioDevAPI/assets/to_readme/appsettings.png">    
+  </p>
+
+  Para confirmar esta informação basta olhar o nome do servidor em qual IDE estiver utilizando.
+
+  <p>
+    <img src="DesafioDevAPI/assets/to_readme/datasource.png">    
+  </p>
+
+
   <p>
     <img src="DesafioDevAPI/assets/to_readme/PackageManageConsole.png">    
   </p>
+  
+* add-migration first-migration
+* update-database
+  
 
 
 Após criação do banco pode ser executado a API que irá carregar no navegador
