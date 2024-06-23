@@ -24,19 +24,13 @@ namespace DesafioDevAPI.Controllers
             return Ok(await _clienteInterface.Get());
         }
 
-        [HttpPost]
-        [ProducesResponseType(StatusCodes.Status201Created)]
-        public async Task<ActionResult<ServiceResponse<List<ClienteModel>>>> Create(ClienteDto clienteDto)
-        {
-            return Ok(await _clienteInterface.Create(clienteDto));
-        }
-
         [HttpGet("{id}")]
         public async Task<ActionResult<ServiceResponse<ClienteModel>>> GetById(int id)
         {
             ServiceResponse<ClienteModel> serviceResponse = await _clienteInterface.GetById(id);
             return Ok(serviceResponse);
         }
+
         [HttpGet("clientes/{uf}")]
         public async Task<ActionResult<List<ClienteModel>>> getByUF(string uf)
         {
@@ -44,11 +38,20 @@ namespace DesafioDevAPI.Controllers
             return Ok(serviceResponse);
         }
 
+
+        [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        public async Task<ActionResult<ServiceResponse<List<ClienteModel>>>> Create(ClienteDto clienteDto)
+        {
+            return Ok(await _clienteInterface.Create(clienteDto));
+        }
+
+
         [HttpPut]
         public async Task<ActionResult<List<ClienteModel>>> Update(ClienteModel cliente)
         {
             ServiceResponse<List<ClienteModel>> serviceResponse = await _clienteInterface.Update(cliente);
-            return Ok(serviceResponse);            
+            return Ok(serviceResponse);
         }
 
         [HttpDelete]

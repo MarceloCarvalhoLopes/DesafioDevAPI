@@ -13,6 +13,73 @@ namespace DesafioDevAPI.Services.ClienteService
             _context = context;    
         }
 
+        public async Task<ServiceResponse<List<ClienteModel>>> Get()
+        {
+            ServiceResponse<List<ClienteModel>> serviceResponse = new ServiceResponse<List<ClienteModel>>();
+            try
+            {
+                serviceResponse.Dados = _context.Cliente.ToList();
+                if (serviceResponse.Dados.Count == 0)
+                {
+                    serviceResponse.Mensagem = "Nenhum dado encontrado!";
+                }
+            }
+            catch (Exception ex)
+            {
+                serviceResponse.Mensagem = ex.Message;
+                serviceResponse.Successo = false;
+            }
+            return serviceResponse;
+        }
+        public async Task<ServiceResponse<ClienteModel>> GetById(int id)
+        {
+            ServiceResponse<ClienteModel> serviceResponse = new ServiceResponse<ClienteModel>();
+            try
+            {
+                ClienteModel cliente = _context.Cliente.FirstOrDefault(x => x.Id == id);
+
+                if (cliente == null)
+                {
+                    serviceResponse.Dados = null;
+                    serviceResponse.Mensagem = "´Cliente não localizado";
+                    serviceResponse.Successo = false;
+                }
+
+                serviceResponse.Dados = cliente;
+            }
+            catch (Exception ex)
+            {
+                serviceResponse.Mensagem = ex.Message;
+                serviceResponse.Successo = false;
+            }
+            return serviceResponse;
+        }
+
+        public async Task<ServiceResponse<List<ClienteModel>>> GetByUF(string uf)
+        {
+            ServiceResponse<List<ClienteModel>> serviceResponse = new ServiceResponse<List<ClienteModel>>();
+            try
+            {
+
+
+                ClienteModel cliente = _context.Cliente.FirstOrDefault(x => x.Uf == uf);
+
+
+                if (cliente == null)
+                {
+                    serviceResponse.Dados = null;
+                    serviceResponse.Mensagem = "´Nenhum registro localizado";
+                    serviceResponse.Successo = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                serviceResponse.Mensagem = ex.Message;
+                serviceResponse.Successo = false;
+            }
+            return serviceResponse;
+
+        }
         public async Task<ServiceResponse<List<ClienteModel>>> Create(ClienteDto clienteDto)
         {
             ServiceResponse<List<ClienteModel>> serviceResponse = new ServiceResponse<List<ClienteModel>>();
@@ -72,72 +139,6 @@ namespace DesafioDevAPI.Services.ClienteService
 
         }
 
-        public async Task<ServiceResponse<List<ClienteModel>>> Get()
-        {
-            ServiceResponse<List<ClienteModel>> serviceResponse = new ServiceResponse<List<ClienteModel>>();
-            try
-            {
-                serviceResponse.Dados = _context.Cliente.ToList();
-                if (serviceResponse.Dados.Count == 0)
-                {
-                    serviceResponse.Mensagem = "Nenhum dado encontrado!";
-                }
-            }
-            catch (Exception ex)
-            {
-                serviceResponse.Mensagem = ex.Message;
-                serviceResponse.Successo = false;
-            }
-            return serviceResponse;
-        }
-        public async Task<ServiceResponse<ClienteModel>> GetById(int id)
-        {
-            ServiceResponse<ClienteModel> serviceResponse = new ServiceResponse<ClienteModel>();
-            try
-            {
-                ClienteModel cliente = _context.Cliente.FirstOrDefault(x => x.Id == id);
-                
-                if (cliente == null) {
-                    serviceResponse.Dados = null;
-                    serviceResponse.Mensagem = "´Cliente não localizado";
-                    serviceResponse.Successo = false;
-                }
-                
-                serviceResponse.Dados = cliente;
-            }
-            catch (Exception ex) {
-                serviceResponse.Mensagem = ex.Message;
-                serviceResponse.Successo = false;
-            }
-            return serviceResponse;
-        }
-
-        public async Task<ServiceResponse<List<ClienteModel>>> GetByUF(string uf)
-        {
-            ServiceResponse<List<ClienteModel>> serviceResponse = new ServiceResponse<List<ClienteModel>>();
-            try
-            {
-        
-
-                ClienteModel cliente = _context.Cliente.FirstOrDefault(x => x.Uf == uf);
-
-
-                if (cliente == null)
-                {
-                    serviceResponse.Dados = null;
-                    serviceResponse.Mensagem = "´Nenhum registro localizado";
-                    serviceResponse.Successo = false;
-                }
-            }
-            catch (Exception ex)
-            {
-                serviceResponse.Mensagem = ex.Message;
-                serviceResponse.Successo = false;
-            }
-            return serviceResponse;
-
-        }
-
         public async Task<ServiceResponse<List<ClienteModel>>> Update(ClienteModel clienteModel)
         {
             ServiceResponse<List<ClienteModel>> serviceResponse = new ServiceResponse<List<ClienteModel>>();
@@ -157,7 +158,8 @@ namespace DesafioDevAPI.Services.ClienteService
 
                 serviceResponse.Dados = _context.Cliente.ToList();
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
 
                 serviceResponse.Mensagem = ex.Message;
                 serviceResponse.Successo = false;
@@ -166,6 +168,7 @@ namespace DesafioDevAPI.Services.ClienteService
             return serviceResponse;
         }
 
-    
+
+
     }
 }
