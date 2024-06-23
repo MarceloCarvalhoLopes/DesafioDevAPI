@@ -22,10 +22,12 @@ Desenvolvido uma API em C# para testar os conhecimentos solicitados a vaga.
 ## Executando a API
 
 Abra a API em sua IDE de preferência, deve ter instalado o banco Sql Server em
-sua máquina. Executar os comandos abaixo pelo Package Manager Console para gerar
-o Banco de Dados e as Tabelas.
+sua máquina. Executar os comandos abaixo na sequência pelo Package Manager Console para gerar
+o Banco de Dados e as tabelas.
 
-add-migration first-migration e update-database
+* add-migration first-migration
+* update-database
+  
   <p>
     <img src="DesafioDevAPI/assets/to_readme/PackageManageConsole.png">    
   </p>
@@ -40,7 +42,7 @@ padrão https://localhost:7202/swagger/index.html
 
 
 Para utilizar os end-points primeiro é necessário logar na API através do 
-end-point Conta informando login e password
+end-point Conta informando login e password conforme imagem abaixo:
 
   <p>
     <img src="DesafioDevAPI/assets/to_readme/ContaEndPoint.png">    
