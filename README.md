@@ -1,7 +1,7 @@
 # Desafio API
 
 ## Criação da API para vaga de analista/desenvolvedor.
-Desenvolvido uma API em C# para testar os conhecimentos solicitados a vaga.
+Desenvolvido uma API em C# para testar os conhecimentos solicitados para vaga.
 
 ## Tecnologias utilizadas.
 
