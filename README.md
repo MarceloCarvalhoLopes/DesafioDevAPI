@@ -15,21 +15,9 @@ Desenvolvido uma API em C# para testar os conhecimentos solicitados a vaga.
 * IdentityModel.Tokens.Jwt
 
 ## End-points.
-### Cliente Conta
-* Get / Cliente
-* Post / Cliente
-* Put / Cliente
-* Delete / Cliente
-* Get / Cliente by Id
-* Get / Cliente by UF
-
   <p>
     <img src="DesafioDevAPI/assets/to_readme/allendpoints.png">    
   </p>
-
-### Conta
-
-* Post / Conta
 
 ## Executando a API
 
@@ -38,9 +26,18 @@ sua máquina. Executar os comandos abaixo pelo Package Manager Console para gera
 o Banco de Dados e as Tabelas.
 
 add-migration first-migration e update-database
+  <p>
+    <img src="DesafioDevAPI/assets/to_readme/PackageManageConsole.png">    
+  </p>
+
 
 Após criação do banco pode ser executado a API que irá carregar no navegador
 padrão https://localhost:7202/swagger/index.html
+
+  <p>
+    <img src="DesafioDevAPI/assets/to_readme/PackageManageConsole.png">    
+  </p>
+
 
 Para utilizar os end-points primeiro é necessário logar na API através do 
 end-point Conta informando login e password
